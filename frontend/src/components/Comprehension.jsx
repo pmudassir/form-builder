@@ -3,6 +3,7 @@ import MCQ from './MCQ'
 
 const Comprehension = () => {
     const [mcqComponents, setMCQComponents] = useState([<MCQ key={0} />]);
+    const [paragraph, setParagraph] = useState("");
 
     const handleAddMCQ = () => {
         setMCQComponents(prevComponents => [...prevComponents, <MCQ key={prevComponents.length} />]);
@@ -12,10 +13,14 @@ const Comprehension = () => {
         setMCQComponents(prevComponents => prevComponents.filter((_, i) => i !== index));
     }
 
+    const handleInputChange = (e) => {
+        setParagraph(e.target.value);
+    }
+
     return (
         <div className="border-l-4 border-r-4 border-blue-500 p-4 mx-20 mt-5">
             <h2 className="text-lg font-semibold">Question 3</h2>
-            <textarea className="border border-gray-300 p-2 mt-2" rows={15} cols={50}></textarea>
+            <textarea className="border border-gray-300 p-2 mt-2" onChange={handleInputChange} rows={15} cols={50}></textarea>
             <div className='flex'>
                 <div className="flex-grow">
                     {mcqComponents}
