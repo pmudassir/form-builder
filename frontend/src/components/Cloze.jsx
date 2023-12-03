@@ -76,7 +76,6 @@ const Cloze = () => {
                 />
             </div>
             <DragDropContext onDragEnd={onDragEnd}>
-                {/* <p className="text-sm mt-5">Options</p> */}
                 <Droppable droppableId="droppable">
                     {(provided) => (
                         <div ref={provided.innerRef} {...provided.droppableProps}>
