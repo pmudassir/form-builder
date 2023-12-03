@@ -6,7 +6,7 @@ const Categorize = () => {
     const [categories, setCategories] = useState(['']);
     const [items, setItems] = useState(['']);
 
-    // item category handlers -----------------------------------------------
+    // category functoin handlers -----------------------------------------------
 
     const addCategoryInput = () => {
         setCategories([...categories, '']);
