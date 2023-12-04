@@ -1,9 +1,9 @@
-import Categorize from "./components/Categorize";
 import FormBuilder from "./pages/FormBuilder";
+import Renderer from "./pages/Renderer"
 
 function App() {
   return (
-    <FormBuilder />
+    <Renderer />
   );
 }
 
