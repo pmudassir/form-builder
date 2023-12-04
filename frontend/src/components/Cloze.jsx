@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { MdOutlineDragIndicator } from "react-icons/md";
-
+import { useDispatch } from 'react-redux';
+import { addPreview, addOptions, addCustomOptions } from '../features/formSlice';
 
 const Cloze = () => {
     const [editorContent, setEditorContent] = useState("");
     const [selectedWord, setSelectedWord] = useState("");
     const [options, setOptions] = useState([""]);
     const [customOptions, setCustomOptions] = useState([""]);
+
+    const dispatch = useDispatch();
 
     const handleUnderline = () => {
         const newEditorContent = editorContent.replace(selectedWord, "____");
@@ -53,6 +56,12 @@ const Cloze = () => {
 
         setOptions(updatedOptions);
     };
+
+    const handleSubmit = () => {
+        dispatch(addPreview(editorContent));
+        dispatch(addOptions(options));
+        dispatch(addCustomOptions(customOptions));
+    }
 
     return (
         <div className="border-l-4 border-r-4 border-blue-500 p-4 mx-20 mt-5">
@@ -123,6 +132,7 @@ const Cloze = () => {
                     )}
                 </Droppable>
             </DragDropContext>
+            <button className='mt-3 ml-2 px-4 py-2 bg-blue-500 text-white rounded' onClick={handleSubmit}>Done</button>
         </div>
     )
 }

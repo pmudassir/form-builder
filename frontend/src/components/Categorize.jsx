@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { MdOutlineDragIndicator } from "react-icons/md";
+import { useDispatch } from 'react-redux';
+import { addCategories, addItems } from '../store/dataSlice';
 
 const Categorize = () => {
     const [categories, setCategories] = useState(['']);
     const [items, setItems] = useState(['']);
+
+    const dispatch = useDispatch();
 
     // category functoin handlers -----------------------------------------------
 
@@ -66,6 +70,11 @@ const Categorize = () => {
         // Update the state with the reordered items
         setItems(updatedItems);
     };
+
+    const handleSubmit = () => {
+        dispatch(addCategories(categories));
+        dispatch(addItems(items));
+    }
 
     return (
         <div className="border-l-4 border-r-4 border-blue-500 p-4 mx-20 mt-5">
@@ -185,6 +194,7 @@ const Categorize = () => {
                     ))}
                 </div>
             </div>
+            <button className='mt-3 ml-2 px-4 py-2 bg-blue-500 text-white rounded' onClick={handleSubmit}>Done</button>
         </div>
     )
 }

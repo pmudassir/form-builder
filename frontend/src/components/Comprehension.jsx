@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import MCQ from './MCQ'
+import { addParagraph } from '../store/dataSlice'
+import { useDispatch } from 'react-redux';
 
 const Comprehension = () => {
     const [mcqComponents, setMCQComponents] = useState([<MCQ key={0} />]);
     const [paragraph, setParagraph] = useState("");
+
+    const dispatch = useDispatch();
 
     const handleAddMCQ = () => {
         setMCQComponents(prevComponents => [...prevComponents, <MCQ key={prevComponents.length} />]);
@@ -15,6 +19,10 @@ const Comprehension = () => {
 
     const handleInputChange = (e) => {
         setParagraph(e.target.value);
+    }
+
+    const handleSubmit = () => {
+        dispatch(addParagraph(paragraph));
     }
 
     return (
@@ -43,6 +51,7 @@ const Comprehension = () => {
                         </button>}
                 </div>
             </div>
+            <button className='mt-3 ml-2 px-4 py-2 bg-blue-500 text-white rounded' onClick={handleSubmit}>Done</button>
         </div>
     )
 }
