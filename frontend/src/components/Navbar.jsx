@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHeader } from '../store/dataSlice';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [editableTitle, setEditableTitle] = useState('Untitled Quiz');
     const [isEditing, setIsEditing] = useState(false);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { header, items, options, customOptions, categories, questions, choices, preview, paragraph } = useSelector(state => state.data);
 
@@ -25,14 +27,15 @@ const Navbar = () => {
     };
 
     const handleFormBuild = async () => {
-        console.log("here");
-
-        try {
-            await axios.post('http://localhost:4000/api/form/data', { header, items, options, customOptions, categories, questions, choices, preview, paragraph });
-            console.log("done");
-        } catch (error) {
-            console.log(error);
-        }
+        console.log(header);
+        navigate("/renderer");
+        // try {
+        //     console.log(items);
+        //     await axios.post('http://localhost:4000/api/form/data', { header, items, options, customOptions, categories, questions, choices, preview, paragraph });
+        //     console.log("done");
+        // } catch (error) {
+        //     console.log(error);
+        // }
     }
 
     return (
